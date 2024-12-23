@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const SearchBar = ({ onResults, fileData }) => {
   const [query, setQuery] = useState('');
@@ -17,7 +18,7 @@ const SearchBar = ({ onResults, fileData }) => {
         onResults(response.data);
       })
       .catch((error) => {
-        console.error('Error during search:', error);
+        toast.error('Error during search:', error);
       });
   };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useDropzone } from "react-dropzone"
 import axios from "axios"
+import { toast } from "react-toastify";
 
 
 const FileUpload = ({ onFileUploaded }) => {
@@ -14,19 +15,19 @@ const FileUpload = ({ onFileUploaded }) => {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then((response) => {
-                console.log('File uploaded successfully:', response.data);
+                console.log('File uploaded successfully',response);
                 onFileUploaded(response.data);
             })
             .catch((error) => {
                 if (error.response) {
                     // Server responded with a status code out of 2xx
-                    console.error('Server Error:', error.response.data);
+                    toast.error('Server Error:', error.response.data);
                 } else if (error.request) {
                     // Request was made but no response received
-                    console.error('No Response:', error.request);
+                    toast.error('No Response:', error.request);
                 } else {
                     // Something else happened
-                    console.error('Error:', error.message);
+                    toast.error('Error:', error.message);
                 }
             });
 
