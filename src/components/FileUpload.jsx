@@ -15,7 +15,7 @@ const FileUpload = ({ onFileUploaded }) => {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
             .then((response) => {
-                console.log('File uploaded successfully',response);
+                toast.success('File uploaded successfully',response);
                 onFileUploaded(response.data);
             })
             .catch((error) => {
